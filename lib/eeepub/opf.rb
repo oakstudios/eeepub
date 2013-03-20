@@ -84,7 +84,7 @@ module EeePub
             end
           end
         end
-        builder.meta(:name => 'cover', :content => self.cover) if self.cover
+        builder.meta(:name => 'cover', :content => 'cover-image') if self.cover
       end
     end
 
@@ -98,8 +98,13 @@ module EeePub
 
     def build_spine(builder)
       builder.spine :toc => toc do
+        itemref = :idref => i
+        if i =~ /cover\.html/
+          itemref[:idref] = 'cover'
+          itemref.merge!(:linear => 'no')
+        end
         spine.each do |i|
-          builder.itemref :idref => i
+          builder.itemref itemref
         end
       end
     end
