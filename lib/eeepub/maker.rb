@@ -112,9 +112,6 @@ module EeePub
           dest_dir = File.join(dir, dir_path)
           FileUtils.mkdir_p(dest_dir)
           FileUtils.cp(file_path, dest_dir+(file[:filename].nil? ? '' : ('/'+file[:filename].to_s)))
-          unless file[:filename].nil?
-            file.first = {file[:filename].to_s => dir_path}
-          end
         end
       end
 
@@ -143,7 +140,7 @@ module EeePub
             File.basename(file)
           when Hash
             file_path, dir_path = *file.first
-            file[:href] = File.join(dir_path, File.basename(file_path))
+            file[:href] = File.join(dir_path, file[:filename].nil? ? File.basename(file_path) : file[:filename].to_s)
             file
           end
         },
