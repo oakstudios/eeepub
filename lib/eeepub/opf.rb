@@ -98,10 +98,11 @@ module EeePub
 
     def build_spine(builder)
       builder.spine :toc => toc do
-        itemref = :idref => i
+        itemref = {:idref => i}
+
         if i =~ /cover\.html/
           itemref[:idref] = 'cover'
-          itemref.merge!(:linear => 'no')
+          itemref.merge! :linear => 'no'
         end
         spine.each do |i|
           builder.itemref itemref
