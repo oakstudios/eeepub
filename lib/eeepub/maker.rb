@@ -111,7 +111,7 @@ module EeePub
           file_path, dir_path = *file.first
           dest_dir = File.join(dir, dir_path)
           FileUtils.mkdir_p(dest_dir)
-          FileUtils.cp(file_path, dest_dir)
+          FileUtils.cp(file_path, dest_dir+(file[:filename].nil? ? '' : file[:filename]))
         end
       end
 
@@ -142,7 +142,6 @@ module EeePub
             file_path, dir_path = *file.first
             file[:href] = File.join(dir_path, File.basename(file_path))
             file
-
           end
         },
         :ncx => @ncx_file,
