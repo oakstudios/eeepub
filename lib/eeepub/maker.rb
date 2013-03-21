@@ -142,6 +142,7 @@ module EeePub
             file_path, dir_path = *file.first
             file[:href] = File.join(dir_path, File.basename(file_path))
             file
+
           end
         },
         :ncx => @ncx_file,

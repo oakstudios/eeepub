@@ -113,7 +113,6 @@ module EeePub
 
     def build_guide(builder)
       return if guide.nil? || guide.empty?
-
       builder.guide do
         guide.each do |i|
           builder.reference convert_to_xml_attributes(i)
