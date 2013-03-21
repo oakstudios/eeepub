@@ -140,7 +140,8 @@ module EeePub
             File.basename(file)
           when Hash
             file_path, dir_path = *file.first
-            File.join(dir_path, File.basename(file_path))
+            file[:href] = File.join(dir_path, File.basename(file_path))
+            file
           end
         },
         :ncx => @ncx_file,
