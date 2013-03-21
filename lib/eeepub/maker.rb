@@ -111,7 +111,7 @@ module EeePub
           file_path, dir_path = *file.first
           dest_dir = File.join(dir, dir_path)
           FileUtils.mkdir_p(dest_dir)
-          FileUtils.cp(file_path, dest_dir+(file[:filename].nil? ? '' : file[:filename]))
+          FileUtils.cp(file_path, dest_dir+(file[:filename].nil? ? '' : ('/'+file[:filename].to_s)))
         end
       end
 
